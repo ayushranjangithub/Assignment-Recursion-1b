@@ -1,0 +1,92 @@
+Pair Star
+Send Feedback
+Given a string S, compute recursively a new string where identical chars that are adjacent in the original string are separated from each other by a "*".
+Input format :
+String S
+Output format :
+Modified string
+Constraints :
+0 <= |S| <= 1000
+where |S| represents length of string S.
+Sample Input 1 :
+hello
+Sample Output 1:
+hel*lo
+Sample Input 2 :
+aaaa
+Sample Output 2 :
+a*a*a*a
+
+
+// #include<cstring>
+// // Change in the given string itself. So no need to return or print the changed string.
+// char helperfunction(char input[] , int len){
+//     if(len == '\0'){
+//         return input[len];
+//     }
+    
+//     char ans = helperfunction(input+1 , len);
+//     if(input[len] == input[len+1]){
+//         for(int i = len-1 ; i>0 ; i-- ){
+//             input[len+1] = input[i];
+//         }
+//         input[1] = '*';
+//     }
+//     return ans;
+// }
+// void pairStar(char input[]) {
+//     int size = strlen(input);
+//  helperfunction(input , size);
+
+// }
+
+// Change in the given string itself. So no need to return or print the changed string.
+#include<bits/stdc++.h>
+void pair(char [],int);
+void pairStar(char input[]) 
+{
+    // Write your code here
+  //  int l=0;
+  //  while(input[l]!='\0')
+   // {
+    //   l++;
+   // }
+   pair(input,0);
+    
+
+}
+
+void pair(char input [],int ind)
+{
+    if(input[ind] == '\0')    //base case
+        return ;
+    
+     pair(input,ind+1);     // recursive call
+    
+    if(input[ind]==input[ind+1])
+    { 
+        int len = strlen(input);
+        input[len+1]='\0';
+        for(int i=len-1;i>ind;i--)
+        {
+            input[i+1]=input[i];
+         }
+        
+        input[ind+1]='*';
+     }
+    
+}
+
+
+// Main Code:
+
+#include <iostream>
+#include "solution.h"
+using namespace std;
+
+int main() {
+   char input[100];
+   cin.getline(input, 100);
+   pairStar(input);
+   cout << input << endl;
+}
